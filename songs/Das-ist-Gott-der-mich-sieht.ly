@@ -3,7 +3,7 @@
 \header {
   title = "Das ist Gott, der mich sieht"
   subtitle = "nach 1. Mose 16,13"
-  poet = "Jan Martin Reckel"
+  composer = "Jan Martin Reckel"
   % Voreingestellte LilyPond-Tagline entfernen
   tagline = ##f
 }

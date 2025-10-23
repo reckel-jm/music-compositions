@@ -68,7 +68,7 @@ def make_html(rows):
 <h1>Index of all Music Compositions</h1>
 </header>
 <main>
-<p>This index lists all music compositions with meta data extracted from the source files. It is automatically generated from the <a href="https://github.com/reckel-jm/music-compositions">Github repository</a>.</p>
+<p>This index lists all music compositions and contributions from Jan Martin Reckel with meta data extracted from the source files. It is automatically generated from the <a href="https://github.com/reckel-jm/music-compositions">Github repository</a>.</p>
 <table>
 <thead><tr><th>Title</th><th>Subtitle</th><th>Composer / Poet</th><th>Dedication</th><th>Version</th><th>File</th><th>PDF</th></tr></thead><tbody>
 """
@@ -83,7 +83,14 @@ def make_html(rows):
         pdfpath = html.escape(r.get("pdf",""))
         pdf_link = f'<a href="{pdfpath}">{Path(pdfpath).name}</a>' if pdfpath else ""
         body += f"<tr><td>{title}</td><td>{subtitle}</td><td>{composer}</td><td>{dedication}</td><td>{version}</td><td><a href=\"{filepath}\">{filepath}</a></td><td>{pdf_link}</td></tr>\n"
-    foot = "</tbody></table></main></body></html>\n"
+    foot = """
+</tbody></table></main>
+<footer>
+<h3>Licensing</h3>
+<p>Unless explicitely noted otherwise inside the Lilypond/PDF documents, all compositions are licensed under the <a href="https://creativecommons.org/publicdomain/zero/1.0/ ">CC0 1.0 Universal</a> license which basically publishes all publications as public domain. If the license is not applicable in your region or legal context, you could also use the <a href="https://opensource.org/license/mit">MIT license</a>.</p>
+</footer>
+</body></html>\n
+"""
     return head + body + foot
 
 if __name__ == "__main__":
