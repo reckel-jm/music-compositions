@@ -64,8 +64,11 @@ def make_html(rows):
 >
 </head>
 <body class="container">
-<h1>Index aller Musikkompositionen</h1>
-<p>Automatisch erzeugt.</p>
+<header>
+<h1>Index of all Music Compositions</h1>
+</header>
+<main>
+<p>This index lists all music compositions with meta data extracted from the source files. It is automatically generated from the <a href="https://github.com/reckel-jm/music-compositions">Github repository</a>.</p>
 <table>
 <thead><tr><th>Title</th><th>Subtitle</th><th>Composer / Poet</th><th>Dedication</th><th>Version</th><th>File</th><th>PDF</th></tr></thead><tbody>
 """
@@ -80,7 +83,7 @@ def make_html(rows):
         pdfpath = html.escape(r.get("pdf",""))
         pdf_link = f'<a href="{pdfpath}">{Path(pdfpath).name}</a>' if pdfpath else ""
         body += f"<tr><td>{title}</td><td>{subtitle}</td><td>{composer}</td><td>{dedication}</td><td>{version}</td><td><a href=\"{filepath}\">{filepath}</a></td><td>{pdf_link}</td></tr>\n"
-    foot = "</tbody></table></body></html>\n"
+    foot = "</tbody></table></main></body></html>\n"
     return head + body + foot
 
 if __name__ == "__main__":
