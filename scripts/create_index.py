@@ -72,6 +72,7 @@ def make_html(rows):
 <table>
 <thead><tr><th>Title</th><th>Subtitle</th><th>Composer / Poet</th><th>Dedication</th><th>Version</th><th>File</th><th>PDF</th></tr></thead><tbody>
 """
+    REPOSITORY_RAW_CONTENT_BASE_URL = "https://raw.githubusercontent.com/reckel-jm/music-compositions/refs/heads/main/"
     body = ""
     for r in rows:
         title = html.escape(r.get("title",""))
@@ -79,10 +80,11 @@ def make_html(rows):
         composer = html.escape(r.get("composer","") or r.get("poet",""))
         dedication = html.escape(r.get("dedication",""))
         version = html.escape(r.get("version",""))
-        filepath = html.escape(r["file"])
+        filepath = html.escape(REPOSITORY_RAW_CONTENT_BASE_URL + r["file"])
+        filename = Path(r["file"]).name
         pdfpath = html.escape(r.get("pdf",""))
         pdf_link = f'<a href="{pdfpath}">{Path(pdfpath).name}</a>' if pdfpath else ""
-        body += f"<tr><td>{title}</td><td>{subtitle}</td><td>{composer}</td><td>{dedication}</td><td>{version}</td><td><a href=\"{filepath}\">{filepath}</a></td><td>{pdf_link}</td></tr>\n"
+        body += f"<tr><td>{title}</td><td>{subtitle}</td><td>{composer}</td><td>{dedication}</td><td>{version}</td><td><a href=\"{filepath}\">{filename}</a></td><td>{pdf_link}</td></tr>\n"
     foot = """
 </tbody></table></main>
 <footer>
