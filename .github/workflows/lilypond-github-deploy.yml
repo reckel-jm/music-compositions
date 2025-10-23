@@ -77,13 +77,24 @@ jobs:
           sudo apt-get install -y lilypond
           lilypond --version
 
-      - name: Compile LilyPond Files locally
+      - name: Compile LilyPond Files locally (preserve folder hierarchy)
         run: |
-          # Find all .ly files recursively and compile them to _site
+          # Find all .ly files recursively and compile them to _site preserving hierarchy
           find . -name "*.ly" -print0 | while IFS= read -r -d $'\0' file; do
-            echo "Compiling: $file"
-            lilypond -o "_site/$(basename "$file" .ly)" "$file"
+            # strip leading ./ if present
+            rel="${file#./}"
+            dir=$(dirname "$rel")
+            outdir="_site/$dir"
+            mkdir -p "$outdir"
+            base=$(basename "$file" .ly)
+            echo "Compiling: $file -> $outdir/$base.pdf"
+            lilypond -o "$outdir/$base" "$file"
           done
+
+      - name: Generate index.html
+        run: |
+          # runs the index generator from scripts/
+          python3 scripts/generate_index.py
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
