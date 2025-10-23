@@ -25,9 +25,9 @@ global = {
   myStaffSize = #20
   #(define fonts
   (make-pango-font-tree
-   "Cambria"
-   "Calibri"
-   "Consolas"
+   "Carlito"
+   "Liberation"
+   "DejaVu"
    (/ myStaffSize 20)))
 }
 

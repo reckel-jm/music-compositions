@@ -31,6 +31,46 @@ jobs:
       - name: Create Output Directory
         run: mkdir -p _site
 
+      - name: Install Calibri, Cambria and Consolas (from repo) or substitutes
+        run: |
+          sudo apt-get update
+          # install font tools and sensible substitutes
+          sudo apt-get install -y fontconfig fonts-crosextra-carlito fonts-liberation fonts-dejavu-core
+          
+          install_fonts() {
+            src_pattern="$1"
+            dst_dir="$2"
+            if compgen -G "$src_pattern" > /dev/null; then
+              echo "Found fonts matching $src_pattern — installing to $dst_dir ..."
+              sudo mkdir -p "$dst_dir"
+              sudo cp $src_pattern "$dst_dir" || true
+              INSTALLED=1
+            else
+              echo "No files for pattern $src_pattern"
+            fi
+          }
+
+          INSTALLED=0
+          # Calibri
+          install_fonts ".github/fonts/Calibri*.ttf" "/usr/local/share/fonts/truetype/calibri"
+          # Cambria (including Cambria Math)
+          install_fonts ".github/fonts/Cambria*.ttf" "/usr/local/share/fonts/truetype/cambria"
+          # Consolas
+          install_fonts ".github/fonts/Consolas*.ttf" "/usr/local/share/fonts/truetype/consolas"
+
+          if [ "$INSTALLED" -eq 1 ]; then
+            echo "Updating font cache after installing provided fonts..."
+            sudo fc-cache -fv
+            echo "Installed fonts from repository."
+          else
+            echo "No proprietary fonts found in .github/fonts — keeping substitutes (Carlito, Liberation, DejaVu)."
+          fi
+
+          # show installed fonts (for workflow logs)
+          fc-list : family | grep -i -E "calibri|carlito|cambria|consolas|liberation|dejavu" || true
+
+
+
       - name: Install LilyPond
         run: |
           sudo apt-get update
