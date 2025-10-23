@@ -94,7 +94,7 @@ jobs:
       - name: Generate index.html
         run: |
           # runs the index generator from scripts/
-          python3 scripts/generate_index.py
+          python3 scripts/create_index.py
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
