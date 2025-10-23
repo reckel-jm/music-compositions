@@ -20,6 +20,21 @@
   indent = 0
 }
 
+\paper {
+  #(set-paper-size "a5")
+  
+  indent = 0
+  system-system-spacing.padding = #3
+  markup-system-spacing.padding = #3
+  
+  myStaffSize = #20
+  #(define fonts
+  (make-pango-font-tree
+   "Carlito"
+   "Liberation"
+   "DejaVu"
+   (/ myStaffSize 20)))
+}
 
 global = {
   \key f \major
@@ -32,8 +47,6 @@ akkorde = \chordmode { \global
   \set chordChanges = ##t
   
 }
-
-
 
 
 melodie= \relative c'' {

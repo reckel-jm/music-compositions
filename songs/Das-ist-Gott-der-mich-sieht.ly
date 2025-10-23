@@ -16,6 +16,7 @@
 }
 
 \paper {
+  page-count = 1
   #(set-paper-size "a4")
   indent = 0
   system-system-spacing = #'((padding . 3) (basic-distance . 8))

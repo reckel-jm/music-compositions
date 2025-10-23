@@ -20,6 +20,22 @@ global = {
   \partial 4
 }
 
+\paper {
+  #(set-paper-size "a5")
+  
+  indent = 0
+  system-system-spacing.padding = #3
+  markup-system-spacing.padding = #3
+  
+  myStaffSize = #20
+  #(define fonts
+  (make-pango-font-tree
+   "Carlito"
+   "Liberation"
+   "DejaVu"
+   (/ myStaffSize 20)))
+}
+
 sopranoVoice = \relative c' {
   \global
   \dynamicUp
@@ -73,8 +89,8 @@ verseThree = \lyricmode {
 
 \score {
   \new Staff \with {
-    instrumentName = "Sopran"
-    shortInstrumentName = "S."
+    instrumentName = ""
+    shortInstrumentName = ""
     midiInstrument = "choir aahs"
   } { \sopranoVoice }
   \addlyrics { \verseOne }
