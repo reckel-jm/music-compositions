@@ -31,17 +31,18 @@ jobs:
       - name: Create Output Directory
         run: mkdir -p _site
 
-      - name: Compile LilyPond Files using Docker
+      - name: Install LilyPond
         run: |
-          # Find all .ly files recursively and compile them
-          # The -o flag redirects the output PDF to the _site directory
-          # The output filename is based on the input filename
+          sudo apt-get update
+          sudo apt-get install -y lilypond
+          lilypond --version
+
+      - name: Compile LilyPond Files locally
+        run: |
+          # Find all .ly files recursively and compile them to _site
           find . -name "*.ly" -print0 | while IFS= read -r -d $'\0' file; do
             echo "Compiling: $file"
-            docker run --rm \
-              -v "$(pwd):/app" \
-              lilypond/lilypond:latest \
-              /usr/bin/lilypond -o "/app/_site/$(basename "$file" .ly)" "/app/$file"
+            lilypond -o "_site/$(basename "$file" .ly)" "$file"
           done
 
       - name: Upload GitHub Pages artifact
