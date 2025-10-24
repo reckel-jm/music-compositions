@@ -4,16 +4,19 @@
 from pathlib import Path
 import re
 import html
+import json
 
 RE_HEADER = re.compile(r'\\header\s*{(.*?)}', re.DOTALL)
 RE_KEY = re.compile(r'(\w+)\s*=\s*(?:"([^"]*)"|##f)', re.MULTILINE)
 RE_VERSION = re.compile(r'\\version\s*"([^"]+)"')
 
+REPOSITORY_RAW_CONTENT_BASE_URL = "https://raw.githubusercontent.com/reckel-jm/music-compositions/refs/heads/main/"
+
 RELEVANT_KEYS = ("title", "subtitle", "composer", "poet", "dedication", "tagline")
 
 def parse_file(p: Path):
     text = p.read_text(encoding="utf-8", errors="ignore")
-    data = {"file": str(p.relative_to(ROOT)), "path": str(p)}
+    data = {"file": str(p.relative_to(ROOT)), "path": REPOSITORY_RAW_CONTENT_BASE_URL + str(p)}
     m = RE_HEADER.search(text)
     if m:
         block = m.group(1)
@@ -69,24 +72,38 @@ def make_html(rows):
 </header>
 <main>
 <p>This index lists all music compositions and contributions from Jan Martin Reckel with meta data extracted from the source files. It is automatically generated from the <a href="https://github.com/reckel-jm/music-compositions">Github repository</a>.</p>
-<table>
-<thead><tr><th>Title</th><th>Subtitle</th><th>Composer / Poet</th><th>Dedication</th><th>Version</th><th>File</th><th>PDF</th></tr></thead><tbody>
+<table class="striped">
+<thead><tr>
+    <th>Title</th>
+    <th>Subtitle</th>
+    <th>Composer / Poet</th>
+    <th>Dedication</th>
+    <th>Lilypond-Version</th>
+    <th>File</th>
+    <th>PDF</th>
+</tr></thead>
+<tbody>
 """
-    REPOSITORY_RAW_CONTENT_BASE_URL = "https://raw.githubusercontent.com/reckel-jm/music-compositions/refs/heads/main/"
+    
     body = ""
     for r in rows:
         title = html.escape(r.get("title",""))
         subtitle = html.escape(r.get("subtitle",""))
         composer = html.escape(r.get("composer","") or r.get("poet",""))
         dedication = html.escape(r.get("dedication",""))
-        version = html.escape(r.get("version",""))
-        filepath = html.escape(REPOSITORY_RAW_CONTENT_BASE_URL + r["file"])
+        lilypond_version = html.escape(r.get("version",""))
+        filepath = html.escape(r["file"])
         filename = Path(r["file"]).name
         pdfpath = html.escape(r.get("pdf",""))
         pdf_link = f'<a href="{pdfpath}">{Path(pdfpath).name}</a>' if pdfpath else ""
-        body += f"<tr><td>{title}</td><td>{subtitle}</td><td>{composer}</td><td>{dedication}</td><td>{version}</td><td><a href=\"{filepath}\">{filename}</a></td><td>{pdf_link}</td></tr>\n"
+
+        # Concatenate table row
+        body += f"<tr><td>{title}</td><td>{subtitle}</td><td>{composer}</td><td>{dedication}</td><td>{lilypond_version}</td><td><a href=\"{filepath}\">{filename}</a></td><td>{pdf_link}</td></tr>\n"
     foot = """
-</tbody></table></main>
+</tbody></table>
+<a role="button" href="compositions.json">Download as JSON</a>
+
+</main>
 <footer>
 <h3>Licensing</h3>
 <p>Unless explicitely noted otherwise inside the Lilypond/PDF documents, all compositions are licensed under the <a href="https://creativecommons.org/publicdomain/zero/1.0/ ">CC0 1.0 Universal</a> license which basically publishes all publications as public domain. If the license is not applicable in your region or legal context, you could also use the <a href="https://opensource.org/license/mit">MIT license</a>.</p>
@@ -99,7 +116,21 @@ if __name__ == "__main__":
     ROOT = Path(__file__).resolve().parents[1]
     OUT_DIR = ROOT / "_site"
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+
     rows = rows_from_repo(ROOT)
+    # sort alphabetically by title (case-insensitive)
+    rows = sorted(rows, key=lambda r: (r.get("title") or "").lower())
+
+    # Generate JSON file with compositions array
+    compositions = []
+    for r in rows:
+        # Add all available metadata fields from the parsed row (generic)
+        compositions.append({k: v for k, v in r.items()})
+    json_out = OUT_DIR / "compositions.json"
+    json_out.write_text(json.dumps(compositions, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"Wrote {json_out}")
+
+    # Generate HTML index
     html_text = make_html(rows)
     out = OUT_DIR / "index.html"
     out.write_text(html_text, encoding="utf-8")
