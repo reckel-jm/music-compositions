@@ -1,5 +1,8 @@
 \version "2.24.1"
 
+%category: song
+%year: 2023
+
 \header {
   title = "Was man mit Geld nicht kaufen kann"
   composer = "Jan Martin Reckel"

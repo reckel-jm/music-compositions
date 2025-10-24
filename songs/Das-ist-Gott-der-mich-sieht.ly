@@ -1,5 +1,9 @@
 \version "2.24.0"
 
+%category: song
+%year: 2023
+%bible_references: 1. Mose 16,13
+
 \header {
   title = "Das ist Gott, der mich sieht"
   subtitle = "nach 1. Mose 16,13"

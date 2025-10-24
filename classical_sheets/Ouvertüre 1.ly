@@ -1,5 +1,8 @@
 \version "2.18.2"
 
+%category: classical
+%year: 2017
+
 \header {
   title = "Ouvertüre"
   composer = "Jan Martin Reckel"

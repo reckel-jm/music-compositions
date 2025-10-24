@@ -1,5 +1,8 @@
 \version "2.24.1"
 
+%category: song
+%year: 2024
+
 \header {
   title = "Wer zu Gott will, der kommt an Jesus nicht vorbei"
   subtitle = "Johannes 14,6; Apostelgeschichte 4,12; 1. Timotheus 2,3-6, uvm."

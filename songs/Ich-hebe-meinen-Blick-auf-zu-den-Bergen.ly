@@ -1,5 +1,8 @@
 \version "2.24.2"
 
+%category: song
+%year: 2024
+
 \header {
   title = "Ich hebe meinen Blick auf zu den Bergen"
   subtitle = "nach Psalm 121"

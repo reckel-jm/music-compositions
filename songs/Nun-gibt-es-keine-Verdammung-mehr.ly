@@ -1,5 +1,8 @@
 \version "2.24.3"
 
+%category: song
+%year: 2024
+
 \header {
   title = "Nun gibt es keine Verdammnis mehr"
   composer = "Jan Martin Reckel"

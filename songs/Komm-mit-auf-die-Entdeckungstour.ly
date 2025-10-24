@@ -1,3 +1,6 @@
+%year: 2014
+%category: song
+
 \version "2.24.1"
 #(ly:set-option 'crop #t)
 \paper {

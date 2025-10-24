@@ -1,5 +1,8 @@
 \version "2.22.2"
 
+%category: song
+%year: 2023
+
 \header {
   title = "Komm zu ihm, der dich geliebt hat"
   composer = "Jan Martin Reckel"

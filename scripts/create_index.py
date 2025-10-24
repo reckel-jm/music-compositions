@@ -9,10 +9,12 @@ import json
 RE_HEADER = re.compile(r'\\header\s*{(.*?)}', re.DOTALL)
 RE_KEY = re.compile(r'(\w+)\s*=\s*(?:"([^"]*)"|##f)', re.MULTILINE)
 RE_VERSION = re.compile(r'\\version\s*"([^"]+)"')
+# Kommentare mit "key: value" (z.B. "% year: 2020")
+RE_COMMENT_KV = re.compile(r'^[ \t]*%[ \t]*([A-Za-z0-9_]+)\s*:\s*(.+)$', re.MULTILINE)
 
 REPOSITORY_RAW_CONTENT_BASE_URL = "https://raw.githubusercontent.com/reckel-jm/music-compositions/refs/heads/main/"
 
-RELEVANT_KEYS = ("title", "subtitle", "composer", "poet", "dedication", "tagline")
+RELEVANT_KEYS = ("title", "subtitle", "category", "composer", "poet", "dedication", "tagline", "year", "bible_references")
 
 def parse_file(p: Path):
     text = p.read_text(encoding="utf-8", errors="ignore")
@@ -36,7 +38,17 @@ def parse_file(p: Path):
     if "composer" not in data:
         m2 = re.search(r'composer\s*=\s*"([^"]+)"', text)
         if m2:
-            data["composer"] = m2.group(1)
+            data["composer"] = m2.group(1).strip()
+
+    # If fields are missing, they might be present in comments
+    #    e.g.. "% year: 2020" oder "% bible_references: Acts 13:4"
+    comment_pairs = dict(RE_COMMENT_KV.findall(text))
+    for key in RELEVANT_KEYS:
+        if key not in data and key in comment_pairs:
+            # Entferne führende/trailing Whitespace
+            data[key] = comment_pairs[key].strip()
+
+    # 4) LilyPond-Version if available
     mver = RE_VERSION.search(text)
     if mver:
         data["version"] = mver.group(1)
@@ -81,6 +93,8 @@ def make_html(rows):
 <thead><tr>
     <th>Title</th>
     <th>Subtitle</th>
+    <th>Category</th>
+    <th>Year</th>
     <th>Composer / Poet</th>
     <th>Dedication</th>
     <th>Lilypond-Version</th>
@@ -107,8 +121,11 @@ def make_html(rows):
         pdfpath = html.escape(r.get("pdf",""))
         pdf_link = f'<a href="{pdfpath}">{Path(pdfpath).name}</a>' if pdfpath else ""
 
+        category = html.escape(r.get("category",""))
+        year = html.escape(r.get("year",""))
+
         # Concatenate table row
-        body += f"<tr><td>{title}</td><td>{subtitle}</td><td>{composer}</td><td>{dedication}</td><td>{lilypond_version}</td><td><a href=\"{filepath}\">{filename}</a></td><td>{pdf_link}</td></tr>\n"
+        body += f"<tr><td>{title}</td><td>{subtitle}</td><td>{category}</td><td>{year}</td><td>{composer}</td><td>{dedication}</td><td>{lilypond_version}</td><td><a href=\"{filepath}\">{filename}</a></td><td>{pdf_link}</td></tr>\n"
     foot = """
 </tbody></table>
 <a role="button" href="compositions.json">Download as JSON</a>

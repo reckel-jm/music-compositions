@@ -1,7 +1,8 @@
-% Dieses Notenblatt wurde erstellt von Michael Nausch
-% Kontakt: michael@nausch.org (PGP public-key 0x2384C849) 
-
 \version "2.16.0"
+
+%category: song
+%year: 2024
+
 \header {
   title = "Freude, große Freude"
   composer = "Jan Martin Reckel"

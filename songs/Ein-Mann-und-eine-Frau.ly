@@ -1,5 +1,8 @@
 \version "2.24.3"
 
+%category: song
+%year: 2025
+
 \header {
   dedication = "Anlässlich einer Hochzeit"
   title = "Ein Mann und eine Frau"

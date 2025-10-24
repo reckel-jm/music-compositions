@@ -1,5 +1,8 @@
 \version "2.18.2"
 
+%category: classical
+%year: 2016
+
 \header {
   title = "Weihnachtsswing"
   composer = "Jan Martin Reckel"

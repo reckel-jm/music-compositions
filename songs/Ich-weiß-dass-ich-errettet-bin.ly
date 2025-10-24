@@ -1,5 +1,8 @@
 \version "2.24.2"
 
+%category: song
+%year: 2024
+
 \header {
   title = "Ich weiß, dass ich errettet bin"
   composer = "Jan Martin Reckel"

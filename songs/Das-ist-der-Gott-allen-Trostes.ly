@@ -1,5 +1,8 @@
 \version "2.24.1"
 
+%category: song
+%year: 2023
+
 \header {
   title = "Das ist der Gott allen Trostes"
   composer = "Jan Martin Reckel"

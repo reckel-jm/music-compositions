@@ -1,5 +1,8 @@
 \version "2.24.2"
 
+%category: song
+%year: 2024
+
 \header {
   title = "Preist den Herrn, für seine Güte"
   composer = "Jan Martin Reckel"

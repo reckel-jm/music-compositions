@@ -1,5 +1,8 @@
 \version "2.24.3"
 
+%category: song
+%year: 2024
+
 \header {
   title = "Sei nicht stolz auf das, was du bist"
   subtitle = "nach 1. Korinther 1,31"

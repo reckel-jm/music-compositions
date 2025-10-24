@@ -1,5 +1,8 @@
 \version "2.22.1"
 
+%category: song
+%year: 2022
+
 \header {
   title = "Komm zu Jesus"
   subtitle = "nach Johannes 6,37"

@@ -1,6 +1,10 @@
 \version "2.24.3"
 \language "deutsch"
 
+%category: song
+%year: 2024
+%bible_references: 1. Korinther 16,14
+
 \header {
   title = "Alles, was ihr tut, geschehe in Liebe"
   subtitle = "nach 1. Korinther 16,14"

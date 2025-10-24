@@ -1,5 +1,8 @@
 \version "2.24.3"
 
+%category: song
+%year: 2023
+
 \header {
   title = "Fürchtet Gott und gebt ihm die Ehre"
   composer = "Jan Martin Reckel"
