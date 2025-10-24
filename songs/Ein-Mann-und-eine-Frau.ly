@@ -4,7 +4,7 @@
   dedication = "Anlässlich einer Hochzeit"
   title = "Ein Mann und eine Frau"
   subtitle = "Segenslied zur Ehe"
-  composer = "Text und Melodie: Jan Martin Reckel"
+  composer = "Jan Martin Reckel"
   % LilyPond-Standard-Tagline entfernen
   tagline = "Lizenzierung: MIT oder CC0"
 }

@@ -3,9 +3,8 @@
 
 \version "2.16.0"
 \header {
-  title = "Freude, große Freude"             % Die Überschrift der Noten wird zentriert gesetzt. 
-  poet = "Text: Jan Martin Reckel" % Name des Dichters, linksbündig unter dem Unteruntertitel. 
-  composer = "Melodie: Jan Martin Reckel" % Name des Komponisten, rechtsbüngig unter dem Unteruntertitel. 
+  title = "Freude, große Freude"
+  composer = "Jan Martin Reckel"
   tagline = ""
 }
 
