@@ -16,7 +16,12 @@ RELEVANT_KEYS = ("title", "subtitle", "composer", "poet", "dedication", "tagline
 
 def parse_file(p: Path):
     text = p.read_text(encoding="utf-8", errors="ignore")
-    data = {"file": str(p.relative_to(ROOT)), "path": REPOSITORY_RAW_CONTENT_BASE_URL + str(p)}
+    file = str(p.relative_to(ROOT))
+    data = {
+        "file": file, 
+        "raw_path": REPOSITORY_RAW_CONTENT_BASE_URL + file
+        }
+    
     m = RE_HEADER.search(text)
     if m:
         block = m.group(1)
@@ -92,8 +97,13 @@ def make_html(rows):
         composer = html.escape(r.get("composer","") or r.get("poet",""))
         dedication = html.escape(r.get("dedication",""))
         lilypond_version = html.escape(r.get("version",""))
-        filepath = html.escape(r["file"])
+        # This is the link to the raw .ly file in the repository
+        filepath = html.escape(r["raw_path"])
+        
+        # This is just the filename of the .ly file
         filename = Path(r["file"]).name
+
+        # PDF path (relative path in the _site folder)
         pdfpath = html.escape(r.get("pdf",""))
         pdf_link = f'<a href="{pdfpath}">{Path(pdfpath).name}</a>' if pdfpath else ""
 
