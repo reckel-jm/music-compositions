@@ -2,6 +2,8 @@
 %category: song
 %melody-composer: Jan Martin Reckel
 %lyric-poet: Jan Martin Reckel
+%copyright: Public Domain/CC0
+%original-language: German
 
 \version "2.24.1"
 #(ly:set-option 'crop #t)

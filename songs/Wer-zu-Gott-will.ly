@@ -4,6 +4,8 @@
 %year: 2025
 %melody-composer: Jan Martin Reckel
 %lyric-poet: Jan Martin Reckel
+%copyright: Public Domain/CC0
+%original-language: German
 
 \header {
   title = "Wer zu Gott will, der kommt an Jesus nicht vorbei"

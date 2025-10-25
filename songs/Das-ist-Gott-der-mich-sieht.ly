@@ -5,6 +5,8 @@
 %bible_references: 1. Mose 16,13
 %melody-composer: Jan Martin Reckel
 %lyric-poet: Jan Martin Reckel
+%copyright: Public Domain/CC0
+%original-language: German
 
 \header {
   title = "Das ist Gott, der mich sieht"

@@ -5,6 +5,7 @@
 %melody-composer: Jan Martin Reckel
 %lyric-poet: Jan Martin Reckel
 %copyright: Public Domain/CC0
+%original-language: German
 
 \header {
   title = "Fürchtet Gott und gebt ihm die Ehre"

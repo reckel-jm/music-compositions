@@ -6,6 +6,8 @@
 %bible_references: 1. Korinther 16,14
 %melody-composer: Jan Martin Reckel
 %lyric-poet: Jan Martin Reckel
+%copyright: Public Domain/CC0
+%original-language: German
 
 \header {
   title = "Alles, was ihr tut, geschehe in Liebe"

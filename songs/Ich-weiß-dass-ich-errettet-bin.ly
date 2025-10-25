@@ -4,6 +4,8 @@
 %year: 2024
 %melody-composer: Jan Martin Reckel
 %lyric-poet: Jan Martin Reckel
+%copyright: Public Domain/CC0
+%original-language: German
 
 \header {
   title = "Ich weiß, dass ich errettet bin"
