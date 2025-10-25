@@ -31,6 +31,9 @@ jobs:
       - name: Create Output Directory
         run: mkdir -p _site
 
+      - name: Move Javascript for Table Sorting to _site
+        run: cp scripts/table-sort.js _site/
+
       - name: Install Calibri, Cambria and Consolas (from repo) or substitutes
         run: |
           sudo apt-get update

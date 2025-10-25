@@ -82,6 +82,7 @@ def make_html(rows):
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
 >
+<script src="table-sort.js"></script>
 </head>
 <body class="container">
 <header>
@@ -89,17 +90,17 @@ def make_html(rows):
 </header>
 <main>
 <p>This index lists all music compositions and contributions from Jan Martin Reckel with meta data extracted from the source files. It is automatically generated from the <a href="https://github.com/reckel-jm/music-compositions">Github repository</a>.</p>
-<table class="striped">
+<table class="striped" id="dataTable">
 <thead><tr>
-    <th>Title</th>
-    <th>Subtitle</th>
-    <th>Category</th>
-    <th>Year</th>
-    <th>Composer / Poet</th>
-    <th>Dedication</th>
-    <th>Lilypond-Version</th>
-    <th>File</th>
-    <th>PDF</th>
+    <th onclick="sortTable(0)">Title</th>
+    <th onclick="sortTable(1)">Subtitle</th>
+    <th onclick="sortTable(2)">Category</th>
+    <th onclick="sortTable(3)">Year</th>
+    <th onclick="sortTable(4)">Composer / Poet</th>
+    <th onclick="sortTable(5)">Dedication</th>
+    <th onclick="sortTable(6)">Lilypond-Version</th>
+    <th onclick="sortTable(7)">File</th>
+    <th onclick="sortTable(8)">PDF</th>
 </tr></thead>
 <tbody>
 """
