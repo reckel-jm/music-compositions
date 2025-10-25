@@ -2,6 +2,7 @@
 
 %category: classical
 %year: 2016
+%melody-composer: Jan Martin Reckel
 
 \header {
   title = "Weihnachtsswing"

@@ -2,10 +2,12 @@
 
 %category: song
 %year: 2023
+%melody-composer: Jan Martin Reckel
+%lyric-poet: Jan Martin Reckel
 
 \header {
   title = "Komm zu ihm, der dich geliebt hat"
-  composer = "Jan Martin Reckel"
+  composer = "Text und Melodie: Jan Martin Reckel"
   % Voreingestellte LilyPond-Tagline entfernen
   tagline = ##f
 }

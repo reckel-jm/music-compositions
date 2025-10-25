@@ -3,11 +3,13 @@
 %category: song
 %year: 2023
 %bible_references: 1. Mose 16,13
+%melody-composer: Jan Martin Reckel
+%lyric-poet: Jan Martin Reckel
 
 \header {
   title = "Das ist Gott, der mich sieht"
   subtitle = "nach 1. Mose 16,13"
-  composer = "Jan Martin Reckel"
+  composer = "Text und Melodie: Jan Martin Reckel"
   % Voreingestellte LilyPond-Tagline entfernen
   tagline = ##f
 }

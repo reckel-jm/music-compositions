@@ -2,12 +2,14 @@
 
 %category: song
 %year: 2025
+%melody-composer: Jan Martin Reckel
+%lyric-poet: Jan Martin Reckel
 
 \header {
   dedication = "Anlässlich einer Hochzeit"
   title = "Ein Mann und eine Frau"
   subtitle = "Segenslied zur Ehe"
-  composer = "Jan Martin Reckel"
+  composer = "Text und Melodie: Jan Martin Reckel"
   % LilyPond-Standard-Tagline entfernen
   tagline = "Lizenzierung: MIT oder CC0"
 }

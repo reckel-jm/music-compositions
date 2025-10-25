@@ -2,10 +2,12 @@
 
 %category: song
 %year: 2024
+%melody-composer: Jan Martin Reckel
+%lyric-poet: Jan Martin Reckel
 
 \header {
   title = "Ich weiß, dass ich errettet bin"
-  composer = "Jan Martin Reckel"
+  composer = "Text und Melodie: Jan Martin Reckel"
   % Voreingestellte LilyPond-Tagline entfernen
   tagline = ##f
 }

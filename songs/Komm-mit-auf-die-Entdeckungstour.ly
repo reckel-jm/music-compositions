@@ -1,5 +1,7 @@
 %year: 2014
 %category: song
+%melody-composer: Jan Martin Reckel
+%lyric-poet: Jan Martin Reckel
 
 \version "2.24.1"
 #(ly:set-option 'crop #t)
@@ -11,7 +13,7 @@
 
 \header{
 	title = "Komm mit auf Entdeckungstour mit Paulus"
-	composer = "Jan Martin Reckel"
+  composer = "Text und Melodie: Jan Martin Reckel"
 	tagline = ""
 }
 

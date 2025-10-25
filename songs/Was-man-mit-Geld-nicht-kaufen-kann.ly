@@ -2,10 +2,12 @@
 
 %category: song
 %year: 2023
+%melody-composer: Jan Martin Reckel
+%lyric-poet: Jan Martin Reckel
 
 \header {
   title = "Was man mit Geld nicht kaufen kann"
-  composer = "Jan Martin Reckel"
+  composer = "Text und Melodie: Jan Martin Reckel"
   % Voreingestellte LilyPond-Tagline entfernen
   tagline = ##f
 }

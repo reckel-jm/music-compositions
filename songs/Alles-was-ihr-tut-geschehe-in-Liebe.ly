@@ -4,11 +4,13 @@
 %category: song
 %year: 2024
 %bible_references: 1. Korinther 16,14
+%melody-composer: Jan Martin Reckel
+%lyric-poet: Jan Martin Reckel
 
 \header {
   title = "Alles, was ihr tut, geschehe in Liebe"
   subtitle = "nach 1. Korinther 16,14"
-  composer = "Jan Martin Reckel"
+  composer = "Text und Melodie: Jan Martin Reckel"
   % Voreingestellte LilyPond-Tagline entfernen
   tagline = ##f
 }

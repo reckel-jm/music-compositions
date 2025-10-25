@@ -2,6 +2,7 @@
 
 %category: classical
 %year: 2017
+%melody-composer: Jan Martin Reckel
 
 \header {
   title = "Abschiedsklänge"

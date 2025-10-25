@@ -10,11 +10,12 @@ RE_HEADER = re.compile(r'\\header\s*{(.*?)}', re.DOTALL)
 RE_KEY = re.compile(r'(\w+)\s*=\s*(?:"([^"]*)"|##f)', re.MULTILINE)
 RE_VERSION = re.compile(r'\\version\s*"([^"]+)"')
 # Kommentare mit "key: value" (z.B. "% year: 2020")
-RE_COMMENT_KV = re.compile(r'^[ \t]*%[ \t]*([A-Za-z0-9_]+)\s*:\s*(.+)$', re.MULTILINE)
+RE_COMMENT_KV = re.compile(r'^[ \t]*%[ \t]*([A-Za-z0-9_-]+)\s*:\s*(.+)$', re.MULTILINE)
 
 REPOSITORY_RAW_CONTENT_BASE_URL = "https://raw.githubusercontent.com/reckel-jm/music-compositions/refs/heads/main/"
 
-RELEVANT_KEYS = ("title", "subtitle", "category", "composer", "poet", "dedication", "tagline", "year", "bible_references")
+### Relevant keys to extract from header or comments
+RELEVANT_KEYS = ("title", "subtitle", "category", "composer", "melody-composer", "lyric-poet", "dedication", "tagline", "year", "bible_references", "original_language", "translated_language", "translator")
 
 def parse_file(p: Path):
     text = p.read_text(encoding="utf-8", errors="ignore")
@@ -96,7 +97,8 @@ def make_html(rows):
     <th onclick="sortTable(1)">Subtitle</th>
     <th onclick="sortTable(2)">Category</th>
     <th onclick="sortTable(3)">Year</th>
-    <th onclick="sortTable(4)">Composer / Poet</th>
+    <th onclick="sortTable(4)">Lyric Poet</th>
+    <th onclick="sortTable(4)">Melody Composer</th>
     <th onclick="sortTable(5)">Dedication</th>
     <th onclick="sortTable(6)">Lilypond-Version</th>
     <th onclick="sortTable(7)">File</th>
@@ -109,7 +111,8 @@ def make_html(rows):
     for r in rows:
         title = html.escape(r.get("title",""))
         subtitle = html.escape(r.get("subtitle",""))
-        composer = html.escape(r.get("composer","") or r.get("poet",""))
+        melody_composer = html.escape(r.get("melody-composer",""))
+        lyric_poet = html.escape(r.get("lyric-poet",""))
         dedication = html.escape(r.get("dedication",""))
         lilypond_version = html.escape(r.get("version",""))
         # This is the link to the raw .ly file in the repository
@@ -126,7 +129,7 @@ def make_html(rows):
         year = html.escape(r.get("year",""))
 
         # Concatenate table row
-        body += f"<tr><td>{title}</td><td>{subtitle}</td><td>{category}</td><td>{year}</td><td>{composer}</td><td>{dedication}</td><td>{lilypond_version}</td><td><a href=\"{filepath}\">{filename}</a></td><td>{pdf_link}</td></tr>\n"
+        body += f"<tr><td>{title}</td><td>{subtitle}</td><td>{category}</td><td>{year}</td><td>{lyric_poet}</td><td>{melody_composer}</td><td>{dedication}</td><td>{lilypond_version}</td><td><a href=\"{filepath}\">{filename}</a></td><td>{pdf_link}</td></tr>\n"
     foot = """
 </tbody></table>
 <a role="button" href="compositions.json">Download as JSON</a>

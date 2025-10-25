@@ -2,11 +2,13 @@
 
 %category: song
 %year: 2024
+%melody-composer: Jan Martin Reckel
+%lyric-poet: Jan Martin Reckel
 
 \header {
   title = "Sei nicht stolz auf das, was du bist"
   subtitle = "nach 1. Korinther 1,31"
-  composer = "Jan Martin Reckel"
+  composer = "Text und Melodie: Jan Martin Reckel"
   % Voreingestellte LilyPond-Tagline entfernen
   tagline = ##f
 }

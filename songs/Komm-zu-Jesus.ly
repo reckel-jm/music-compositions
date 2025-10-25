@@ -2,11 +2,13 @@
 
 %category: song
 %year: 2022
+%melody-composer: Jan Martin Reckel
+%lyric-poet: Jan Martin Reckel
 
 \header {
   title = "Komm zu Jesus"
   subtitle = "nach Johannes 6,37"
-  composer = "Jan Martin Reckel"
+  composer = "Text und Melodie: Jan Martin Reckel"
   tagline = ##f
 }
 
