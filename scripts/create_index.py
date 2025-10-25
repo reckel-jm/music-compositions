@@ -15,7 +15,7 @@ RE_COMMENT_KV = re.compile(r'^[ \t]*%[ \t]*([A-Za-z0-9_-]+)\s*:\s*(.+)$', re.MUL
 REPOSITORY_RAW_CONTENT_BASE_URL = "https://raw.githubusercontent.com/reckel-jm/music-compositions/refs/heads/main/"
 
 ### Relevant keys to extract from header or comments
-RELEVANT_KEYS = ("title", "subtitle", "category", "composer", "melody-composer", "lyric-poet", "dedication", "tagline", "year", "bible_references", "original_language", "translated_language", "translator")
+RELEVANT_KEYS = ("title", "subtitle", "category", "composer", "melody-composer", "lyric-poet", "dedication", "tagline", "year", "bible-references", "original-language", "translated-language", "translator")
 
 def parse_file(p: Path):
     text = p.read_text(encoding="utf-8", errors="ignore")
