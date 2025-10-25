@@ -91,6 +91,7 @@ def make_html(rows):
 </header>
 <main>
 <p>This index lists all music compositions and contributions from Jan Martin Reckel with meta data extracted from the source files. It is automatically generated from the <a href="https://github.com/reckel-jm/music-compositions">Github repository</a>.</p>
+<div class="overflow-auto">
 <table class="striped" id="dataTable">
 <thead><tr>
     <th onclick="sortTable(0)">Title</th>
@@ -99,10 +100,8 @@ def make_html(rows):
     <th onclick="sortTable(3)">Year</th>
     <th onclick="sortTable(4)">Lyric Poet</th>
     <th onclick="sortTable(4)">Melody Composer</th>
-    <th onclick="sortTable(5)">Dedication</th>
-    <th onclick="sortTable(6)">Lilypond-Version</th>
-    <th onclick="sortTable(7)">File</th>
-    <th onclick="sortTable(8)">PDF</th>
+    <th onclick="sortTable(5)">Source-File</th>
+    <th onclick="sortTable(6)">PDF</th>
 </tr></thead>
 <tbody>
 """
@@ -129,10 +128,11 @@ def make_html(rows):
         year = html.escape(r.get("year",""))
 
         # Concatenate table row
-        body += f"<tr><td>{title}</td><td>{subtitle}</td><td>{category}</td><td>{year}</td><td>{lyric_poet}</td><td>{melody_composer}</td><td>{dedication}</td><td>{lilypond_version}</td><td><a href=\"{filepath}\">{filename}</a></td><td>{pdf_link}</td></tr>\n"
+        body += f"<tr><td>{title}</td><td>{subtitle}</td><td>{category}</td><td>{year}</td><td>{lyric_poet}</td><td>{melody_composer}</td><td><a href=\"{filepath}\">{filename}</a></td><td>{pdf_link}</td></tr>\n"
     foot = """
 </tbody></table>
-<a role="button" href="compositions.json">Download as JSON</a>
+</div>
+<a role="button" href="compositions.json">Download as JSON (Contains more Metadata)</a>
 
 </main>
 <footer>
