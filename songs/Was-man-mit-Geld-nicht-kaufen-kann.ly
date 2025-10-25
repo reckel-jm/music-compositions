@@ -15,7 +15,7 @@
 }
 
 \paper {
-  #(set-paper-size "a5")
+  #(set-paper-size "a4")
   
   indent = 0
   system-system-spacing.padding = #3
